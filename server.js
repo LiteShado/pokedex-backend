@@ -9,17 +9,17 @@ app.use(require('cors')())
 
 const models = require('./models')
 
-app.get('/favPokemon', async (req, res) => {
+app.get('/favPoke', async (req, res) => {
   try {
     const favPokemon = await models.favPokemon.findAll()
     res.json({ favPokemon })
-    
+
   } catch (error) {
     res.status(400).json({ error: error.message })
   }
 })
 
-app.post('/favPokemon', async (req, res) => {
+app.post('/favPoke', async (req, res) => {
   try {
     const newFavPokemon = await models.favPokemon.create({
       name: req.body.name
@@ -30,9 +30,9 @@ app.post('/favPokemon', async (req, res) => {
   }
 })
 
-app.delete('/favPokemon/:id', async (req, res) => {
+app.delete('/favPoke/:id', async (req, res) => {
   try {
-    const deleteResult = await models.favPokemon.destroy({
+    const deleteResult = await models.favPoke.destroy({
       where: { id: req.params.id }
     })
     res.json({ deleteResult })
